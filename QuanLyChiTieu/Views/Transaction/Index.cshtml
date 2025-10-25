@@ -1,0 +1,49 @@
+﻿@model IEnumerable<QuanLyThuChi.Models.Transaction>
+@{
+    ViewBag.Title = "Danh sách giao dịch";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Danh sách giao dịch</h2>
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+   
+    <div>
+        
+        <a href="@Url.Action("ExportExcel", "Transaction")" class="btn btn-primary">Xuất Excel</a>
+    </div>
+</div>
+
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Người dùng</th>
+            <th>Danh mục</th>
+            <th>Loại giao dịch</th>  <!-- ✅ thêm cột này -->
+            <th>Số tiền</th>
+            <th>Ghi chú</th>
+            <th>Ngày giao dịch</th> <!-- ✅ thêm cột ngày nếu cần -->
+            <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.User.Username</td>
+                <td>@item.Category.Name</td>
+                <td>@item.Type</td>  <!-- ✅ hiển thị Thu hoặc Chi -->
+                <td>@item.Amount.ToString("N0")</td>
+                <td>@item.Note</td>
+                <td>@item.TransactionDate.ToString("dd/MM/yyyy")</td>
+                <td>
+                    <a href="@Url.Action("Edit", "Transaction", new { id = item.Id })" class="btn btn-sm btn-warning">Sửa</a>
+                    <a href="@Url.Action("Delete", "Transaction", new { id = item.Id })"
+                       class="btn btn-sm btn-danger">Xóa</a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

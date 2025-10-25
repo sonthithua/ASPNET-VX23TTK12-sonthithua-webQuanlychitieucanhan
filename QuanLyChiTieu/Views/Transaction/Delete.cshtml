@@ -1,0 +1,19 @@
+﻿@model QuanLyThuChi.Models.Transaction
+
+<h2>Xác nhận xóa giao dịch</h2>
+
+<div class="alert alert-warning">
+    <p>Bạn có chắc muốn xóa giao dịch sau?</p>
+    <ul>
+        <li><b>Người dùng:</b> @Model.User.Username</li>
+        <li><b>Danh mục:</b> @Model.Category.Name</li>
+        <li><b>Số tiền:</b> @Model.Amount.ToString("N0")</li>
+    </ul>
+</div>
+
+@using (Html.BeginForm("Delete", "Transaction", new { id = Model.Id }, FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-danger">Xóa</button>
+    @Html.ActionLink("Hủy", "Index", null, new { @class = "btn btn-secondary" })
+}

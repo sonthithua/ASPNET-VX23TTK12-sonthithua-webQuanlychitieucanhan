@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "Đăng ký";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4" style="max-width: 400px;">
+    <h3 class="text-center mb-4">Tạo tài khoản</h3>
+
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger">@ViewBag.Error</div>
+    }
+
+    @if (ViewBag.Success != null)
+    {
+        <div class="alert alert-success">@ViewBag.Success</div>
+    }
+
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post))
+    {
+        <div class="mb-3">
+            <label class="form-label">Tên đăng nhập</label>
+            @Html.TextBox("Username", null, new { @class = "form-control", placeholder = "Nhập tên đăng nhập" })
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Mật khẩu</label>
+            @Html.Password("Password", null, new { @class = "form-control", placeholder = "Nhập mật khẩu" })
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Xác nhận mật khẩu</label>
+            @Html.Password("ConfirmPassword", null, new { @class = "form-control", placeholder = "Nhập lại mật khẩu" })
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Đăng ký</button>
+
+        <p class="text-center mt-3">
+            Đã có tài khoản?
+            <a href="@Url.Action("Login", "Account")">Đăng nhập</a>
+        </p>
+    }
+</div>

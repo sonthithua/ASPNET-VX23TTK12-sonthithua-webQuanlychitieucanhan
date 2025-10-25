@@ -1,0 +1,92 @@
+﻿@{
+    ViewBag.Title = "Báo cáo Thu - Chi";
+    var thu = ViewBag.TongThu;
+    var chi = ViewBag.TongChi;
+    var canDoi = ViewBag.CanDoi;
+}
+
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">📊 Báo cáo Thu - Chi</h2>
+
+    <div class="row justify-content-center">
+        <!-- Biểu đồ -->
+        <div class="col-md-5 text-center">
+            <div style="max-width: 300px; margin: 0 auto;">
+                <canvas id="pieChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Bảng dữ liệu -->
+        <div class="col-md-5">
+            <table class="table table-bordered text-center">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Loại</th>
+                        <th>Số tiền</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Thu</td>
+                        <td>@thu.ToString("N0") đ</td>
+                    </tr>
+                    <tr>
+                        <td>Chi</td>
+                        <td>@chi.ToString("N0") đ</td>
+                    </tr>
+                    <tr class="table-info">
+                        <td><strong>Cân đối</strong></td>
+                        <td><strong>@canDoi.ToString("N0") đ</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const ctx = document.getElementById('pieChart');
+        if (!ctx) {
+            console.error("Không tìm thấy phần tử canvas #pieChart");
+            return;
+        }
+
+        const thu = @thu;
+        const chi = @chi;
+
+        new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Thu', 'Chi'],
+                datasets: [{
+                    data: [thu, chi],
+                    backgroundColor: ['#4CAF50', '#F44336'],
+                    borderColor: '#fff',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            color: '#333',
+                            font: { size: 14 }
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: 'Tỷ lệ Thu - Chi',
+                        font: { size: 18 }
+                    }
+                }
+            }
+        });
+    });
+</script>
