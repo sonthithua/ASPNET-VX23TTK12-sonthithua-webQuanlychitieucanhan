@@ -7,13 +7,13 @@ namespace QuanLyChiTieu.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.5.1")]
-    public sealed partial class AddTypeToTransaction : IMigrationMetadata
+    public sealed partial class InitialCreate : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddTypeToTransaction));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialCreate));
         
         string IMigrationMetadata.Id
         {
-            get { return "202510170658062_AddTypeToTransaction"; }
+            get { return "202510250220271_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

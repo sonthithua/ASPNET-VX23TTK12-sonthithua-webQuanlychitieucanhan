@@ -171,7 +171,7 @@ namespace QuanLyThuChi.Controllers
         // ⚙️ Load dropdown danh mục
         private void LoadDropdowns()
         {
-            ViewBag.Categories = new SelectList(db.Categories.ToList(), "Id", "Name");
+            ViewBag.CategoryId = new SelectList(db.Categories.ToList(), "Id", "Name");
         }
 
         public ActionResult ExportExcel()

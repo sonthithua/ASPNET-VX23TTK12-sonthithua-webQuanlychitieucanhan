@@ -1,0 +1,43 @@
+﻿@model QuanLyThuChi.Models.Budgets
+
+@{
+    ViewBag.Title = "Xóa ngân sách";
+}
+
+<h2>Xóa ngân sách</h2>
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger">
+        @ViewBag.ErrorMessage
+    </div>
+}
+
+<h4>Bạn có chắc chắn muốn xóa ngân sách này?</h4>
+
+<div class="card p-3 mb-3">
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(model => model.Amount)</dt>
+        <dd>@Html.DisplayFor(model => model.Amount)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.Note)</dt>
+        <dd>@Html.DisplayFor(model => model.Note)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.Month)</dt>
+        <dd>@Html.DisplayFor(model => model.Month)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.Year)</dt>
+        <dd>@Html.DisplayFor(model => model.Year)</dd>
+    </dl>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <!-- ⚠️ Quan trọng: Dòng này giúp truyền Id về controller khi submit -->
+    @Html.HiddenFor(model => model.Id)
+
+    <button type="submit" class="btn btn-danger">Xóa</button>
+    @Html.ActionLink("Hủy", "Index", null, new { @class = "btn btn-secondary" })
+}

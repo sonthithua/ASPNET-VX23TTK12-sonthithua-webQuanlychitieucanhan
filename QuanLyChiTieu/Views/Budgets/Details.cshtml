@@ -1,0 +1,27 @@
+﻿@model QuanLyThuChi.Models.Budgets
+
+<h2>Chi tiết Ngân Sách</h2>
+
+<div class="card p-3 mb-3">
+    <dl class="row">
+        <dt class="col-sm-3">Mã</dt>
+        <dd class="col-sm-9">@Model.Id</dd>
+
+        <dt class="col-sm-3">Số tiền</dt>
+        <dd class="col-sm-9">@Model.Amount.ToString("N0") VNĐ</dd>
+
+        <dt class="col-sm-3">Tháng</dt>
+        <dd class="col-sm-9">@Model.Month</dd>
+
+        <dt class="col-sm-3">Năm</dt>
+        <dd class="col-sm-9">@Model.Year</dd>
+
+        <dt class="col-sm-3">Ngày tạo</dt>
+        <dd class="col-sm-9">@Model.CreatedAt.ToString("dd/MM/yyyy")</dd>
+    </dl>
+</div>
+
+<p>
+    @Html.ActionLink("Sửa", "Edit", new { id = Model.Id }, new { @class = "btn btn-warning" })
+    @Html.ActionLink("Trở về", "Index", null, new { @class = "btn btn-secondary" })
+</p>

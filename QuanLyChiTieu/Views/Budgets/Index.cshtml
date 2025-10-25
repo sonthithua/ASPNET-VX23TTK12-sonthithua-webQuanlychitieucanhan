@@ -1,0 +1,62 @@
+﻿@model IEnumerable<QuanLyThuChi.Models.Budgets>
+
+@if (Model.Any(b =>
+{
+    var note = b.Note ?? "";
+    decimal spent = 0;
+    if (note.Contains("Đã chi:"))
+    {
+        var parts = note.Replace("Đã chi:", "").Replace("VNĐ", "").Trim();
+        decimal.TryParse(parts.Replace(",", ""), out spent);
+    }
+    return spent > b.Amount;
+}))
+{
+    <script>alert("⚠️ Một số danh mục của bạn đã vượt ngân sách!");</script>
+}
+
+<h2>Danh sách Ngân Sách</h2>
+
+<p>
+    @Html.ActionLink("Thêm Ngân Sách", "Create", null, new { @class = "btn btn-primary" })
+</p>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Danh mục</th>
+            <th>Ngân sách</th>
+            <th>Đã chi</th>
+            <th>Trạng thái</th>
+            <th>Thao tác</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            // ✅ Tách "đã chi" từ Note
+            var spent = 0M;
+            var text = item.Note ?? "";
+            if (text.Contains("Đã chi:"))
+            {
+                var parts = text.Replace("Đã chi:", "").Replace("VNĐ", "").Trim();
+                decimal.TryParse(parts.Replace(",", ""), out spent);
+            }
+
+            var remaining = item.Amount - spent;
+            var status = remaining >= 0 ? "✅ Còn trong giới hạn" : "⚠️ Vượt ngân sách";
+            var color = remaining >= 0 ? "green" : "red";
+
+            <tr>
+                <td>@(item.Category != null ? item.Category.Name : "Không có")</td>
+                <td>@item.Amount.ToString("N0") VNĐ</td>
+                <td>@spent.ToString("N0") VNĐ</td>
+                <td style="color:@color">@status</td>
+                <td>
+                    @Html.ActionLink("Sửa", "Edit", new { id = item.Id }, new { @class = "btn btn-warning btn-sm" }) |
+                    @Html.ActionLink("Xóa", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -250,6 +250,7 @@
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BudgetsController.cs" />
     <Compile Include="Controllers\TransactionController.cs" />
     <Compile Include="Data\AppDbContext.cs" />
     <Compile Include="Default.aspx.cs">
@@ -262,11 +263,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202510170658062_AddTypeToTransaction.cs" />
-    <Compile Include="Migrations\202510170658062_AddTypeToTransaction.designer.cs">
-      <DependentUpon>202510170658062_AddTypeToTransaction.cs</DependentUpon>
+    <Compile Include="Migrations\202510250220271_InitialCreate.cs" />
+    <Compile Include="Migrations\202510250220271_InitialCreate.designer.cs">
+      <DependentUpon>202510250220271_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Budgets.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Transaction.cs" />
     <Compile Include="Models\User.cs" />
@@ -304,6 +306,11 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Budgets\Index.cshtml" />
+    <Content Include="Views\Budgets\Create.cshtml" />
+    <Content Include="Views\Budgets\Edit.cshtml" />
+    <Content Include="Views\Budgets\Delete.cshtml" />
+    <Content Include="Views\Budgets\Details.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -312,8 +319,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202510170658062_AddTypeToTransaction.resx">
-      <DependentUpon>202510170658062_AddTypeToTransaction.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202510250220271_InitialCreate.resx">
+      <DependentUpon>202510250220271_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -1,0 +1,41 @@
+﻿@model QuanLyThuChi.Models.Budgets
+
+@{
+    ViewBag.Title = "Sửa Ngân Sách";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Sửa Ngân Sách</h2>
+
+@using (Html.BeginForm("Edit", "Budgets", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @* Đây là comment Razor *@ <!-- giữ lại ID để update đúng bản ghi -->
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Amount, "Số tiền")
+        @Html.TextBoxFor(m => m.Amount, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Amount)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Month, "Tháng")
+        @Html.TextBoxFor(m => m.Month, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Month)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Year, "Năm")
+        @Html.TextBoxFor(m => m.Year, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Year)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Note, "Ghi chú")
+        @Html.TextAreaFor(m => m.Note, new { @class = "form-control", rows = 3 })
+        @Html.ValidationMessageFor(m => m.Note)
+    </div>
+
+    <button type="submit" class="btn btn-primary">Lưu</button>
+    @Html.ActionLink("Hủy", "Index", null, new { @class = "btn btn-secondary" })
+}
